@@ -1,0 +1,135 @@
+{% load static %}
+{% block body %}
+    {% include 'navigation.html' %}
+    <script>
+        function checkpass()
+        {
+            if (document.signup.pwd.value != document.signup.cpwd.value)
+            {
+                alert('Passwords do not match');
+                document.signup.cpwd.focus();
+                return false;
+            }
+            return true;
+        }
+
+    </script>
+    <nav class="navbar navbar-expand-lg text-white mt-2"
+         style="background-color:black;  ">
+        <center>
+            <h4 class="text-center">Create an Account-User</h4>
+        </center>
+    </nav>
+    <div class="container bg-light  mt-5 ">
+        <form method="post"
+              enctype="multipart/form-data"
+              onsubmit="return  checkpass();"
+              name="signup">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="">First Name</label>
+                    <input type="text"
+                           class="form-control"
+                           name="fname"
+                           id=""
+                           placeholder="First Name"
+                           required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="">Last Name</label>
+                    <input type="text"
+                           class="form-control"
+                           name="lname"
+                           id=""
+                           placeholder="Last Name"
+                           required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="">Contact No</label>
+                    <input type="text"
+                           class="form-control"
+                           name="contact"
+                           id=""
+                           placeholder="Contact No"
+                           required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="">Email</label>
+                    <input type="text"
+                           class="form-control"
+                           name="email"
+                           id=""
+                           placeholder="Enter Email"
+                           required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="">Password</label>
+                    <input type="Password"
+                           class="form-control"
+                           name="pwd"
+                           id=""
+                           placeholder="Password"
+                           required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="">Confirm Password</label>
+                    <input type="Password"
+                           class="form-control"
+                           name="cpwd"
+                           id=""
+                           placeholder="Confirm Password"
+                           required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label >Gender</label>
+                    <div style="border:1px solid lightgrey; padding:5px; border-radius:6px">
+                        <div class="custom-control custom-radio custom-radio-inline">
+                            <input type="radio"
+                                   name="gender"
+                                   value="male"
+                                   id="customradio1"
+                                   class="custom-control-inline"
+                                   required>
+                            <label class="custom-control-label" for="customradio1">Male</label>
+                            <input type="radio"
+                                   name="gender"
+                                   value="female"
+                                   id="customradio2"
+                                   class="custom-control-inline"
+                                   required>
+                            <label class="custom-control-label" for="customradio2">Female</label>
+                        </div>
+                    </div>
+                </div>
+                <div class=" form-group col-md-6">
+                    <label >Image</label>
+                    <input type="file" class="form-control" name="image" id="">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Signup</button>
+        </div>
+    </form>
+</div>
+{% include 'footer.html' %}
+{% if error == "No" %}
+    <script>
+
+alert("You account has been created successfully");
+window.location = ( '{% url 'user_login' %}' );
+
+    </script>
+{% endif %}
+
+{% if error == "Yes" %}
+    <script>alert("Something went wrong, Please try again")</script>
+{% endif %}
+{% endblock body %}

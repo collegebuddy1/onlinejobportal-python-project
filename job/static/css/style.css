@@ -1,0 +1,30 @@
+body{
+    background-color:none;
+}
+.nav-li{
+
+   
+   color:white;
+   margin-left:20px;
+
+    
+}
+.nav-link{
+    color:white;
+    
+}
+.nav-link:hover{
+
+    color: yellow;
+    font-weight: bold;
+    background-color: red;
+    border-radius: 10px;
+}
+
+.navbar-nav{
+    margin-left:500px;
+}
+
+.navbar-brand:hover{
+    color: yellow !important;
+}

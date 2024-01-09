@@ -1,0 +1,115 @@
+{% load static %}
+{% block body %}
+    {% include 'recruiter_navigation.html' %}
+    <div class="container bg-light  mt-5 ">
+        <form method="post"
+              enctype="multipart/form-data"
+              onsubmit="return  checkpass();"
+              >
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="">Job Title</label>
+                    <input type="text"
+                           class="form-control"
+                           name="jtitle"
+                           id=""
+                           placeholder="Job Title"
+                           required>
+                </div>
+            
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="">Start Date</label>
+                    <input type="date"
+                           class="form-control"
+                           name="sdate"
+                           id=""
+                           placeholder="Start Date"
+                           required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="">End Date</label>
+                    <input type="date"
+                           class="form-control"
+                           name="edate"
+                           id=""
+                           placeholder="End Date"
+                           required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="">Skills</label>
+                    <input type="text"
+                           class="form-control"
+                           name="skills"
+                           id=""
+                           placeholder="Type here..."
+                           required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="">Experience</label>
+                    <input type="text"
+                           class="form-control"
+                           name="exp"
+                           id=""
+                           placeholder="Type here..."
+                           required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="">Location</label>
+                    <input type="text"
+                           class="form-control"
+                           name="location"
+                           id=""
+                           placeholder="Type here..."
+                           required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label >Salary</label>
+                    <input type="floatformat"
+                           class="form-control"
+                           name="salary"
+                           id=""
+                           placeholder="Type here..."
+                           required>
+                </div>
+                <div class=" form-group col-md-6">
+                    <label >Comapany Logo</label>
+                    <input type="file" class="form-control" name="image" id="">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="">Job Description</label>
+                 <textarea class="form-control"  name="jdesc" id="" cols="30" rows="7" placeholder="Description" required></textarea>
+                           
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
+
+{% include 'footer.html' %}
+
+{% if error == "No" %}
+    <script>
+
+alert("Your Job Post has been added successfully");
+window.location = ( '{% url 'job_list' %}' );
+
+    </script>
+{% endif %}
+
+{% if error == "Yes" %}
+    <script>alert("Something went wrong, Please try again")</script>
+{% endif %}
+
+{% endblock body %}

@@ -1,0 +1,52 @@
+<h2>for loop counter problem to be solved</h2>
+
+
+
+{% load static %}
+{% block body %}
+  {% include 'recruiter_navigation.html' %}
+
+ 
+
+  {% for a in ap  %}
+  {% if a.job.recruiter.user == request.user %}
+  <div class="container">
+  <h3><b>Job Title</b>- {{a.job.title}}</h3>
+  <table id="dt" class="table mt-3 display nowrap" >
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">S.No</th>
+        <th scope="col">Full Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Contact</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Image</th>
+        <th scope="col">Resume</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% comment %} #707070 {% endcomment %}
+      
+      {% for i in ap  %}
+      
+      {% if i.job == a.job %}
+      
+      <tr class="text-white" style="background-color:#a60359;" >
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{i.student.user.first_name}} {{i.student.user.last_name}}</td>
+        <td>{{i.student.user}}</td>
+        <td>{{i.student.mobile}}</td>
+        <td>{{i.student.gender}}</td>
+        <td><img src="{{i.student.image.url}}" alt=""  style="border-radius:60%; width:50px; height:50px;" ></td>
+        <td><a href="{{i.resume.url}}" class="btn btn-secondary">Download Resume</a></td>
+        
+      </tr>
+      {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+  {% endfor %}
+
+  {% endblock body %}

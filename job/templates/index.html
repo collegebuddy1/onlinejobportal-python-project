@@ -1,0 +1,48 @@
+{% load static %}
+
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<div class="container-fliud m-1">
+    {% if messages %}
+    {% for message in messages %}
+    <li{% if message.tags %} class=" messages alert alert-dismissible  alert-{{ message.tags }} role="alert" "{% endif %}>{{ message }}</li>
+    {% endfor %}
+
+{% endif %}
+
+    <img src="/static/images/portal1.jpg" class="w-100 " alt="">
+</div>
+
+<div class="container bg-dark w-100 " style="height:300px">
+    <h2 class=" text-center text-white" >------------| OUR PLACED STUDENTS |------------ </h2>
+
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-3">
+                <h1>col 1</h1>
+            </div>
+            <div class="col-3">
+                <h1>col 1</h1>
+            </div>
+            <div class="col-3">
+                
+                <h1>col 1</h1>
+            </div>
+            <div class="col-3">
+                <h1>col 1</h1>
+            </div>
+        </div>
+    </div>
+  
+
+</div>
+{% include 'footer.html' %}
+{% endblock body %}
+
+

@@ -1,0 +1,46 @@
+{% load static %}
+{% block body %}
+  {% include 'navigation.html' %}
+  <marquee class="bg-dark text-white mt-1 " behavior="" direction="">Recruiter Login</marquee>
+  <div class="container bg-light font-weight-bold mt-5 ">
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email"
+               name="email"
+               class="form-control"
+               id="exampleInputEmail1"
+               aria-describedby="emailHelp"
+               placeholder="Enter email">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password"
+               name="pwd"
+               class="form-control"
+               id="exampleInputPassword1"
+               placeholder="Password">
+      </div>
+      <button type="submit" class="btn btn-primary">Login</button>
+      <a href="/recruiter_signup/" class="btn btn-primary">Create an Account</a>
+    </form>
+  </div>
+  {% include 'footer.html' %}
+
+  {% if error == "No" %}
+  
+    <script>
+    alert("You are logged in successfully")
+    window.location = ( ' {% url 'recruiter_home'  %} ' )
+    </script>
+  {% elif error == "Yes" %}
+    <script>alert("Something went wrong")</script>
+  {% elif error == "Yes1" %}
+    <script>alert("User does not exist")</script>
+  {% elif error == "Not" %}
+
+  <script>alert("Your login status is pending")</script>
+  
+  {% endif %}
+{% endblock body %}

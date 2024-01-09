@@ -1,0 +1,42 @@
+{% load static %}
+{% block body %}
+
+{% include 'user_navigation.html' %}
+
+<div class="container bg-light shadow-lg  mt-5 ">
+    <form method="post"
+          enctype="multipart/form-data"
+          onsubmit="return  checkpass();"
+          name="signup">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="">Resume</label>
+                <input type="file"
+                       class="form-control"
+                       name="resume"
+                       id=""
+                       required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+
+        {% if msg == "closed" %}
+        <script>
+            alert("Job Application is closed")
+            window.location = (' {% url 'single_jobdisplay' job.id %} ')
+        </script>
+        {% elif msg == "notopen" %}
+        <script>
+            alert("Job Application is not open yet")
+            window.location = (' {% url 'single_jobdisplay' job.id %} ')
+        </script>
+        {% elif msg == "good" %}
+        <script>
+            alert("You have successfully applied for the job")
+            window.location = (' {% url 'single_jobdisplay' job.id %} ')
+        </script>
+        {% endif %}
+
+{% endblock %}

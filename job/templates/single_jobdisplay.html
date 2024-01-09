@@ -1,0 +1,38 @@
+{% load static %}
+{% block body %}
+  {% include 'user_navigation.html' %}
+  <div class="card container shadow-lg mt-3" style="width: 100rem;">
+    <img src="{{ jd.image.url }}" class="card-img-top w-50 h-3" style="border-radius:4px ;" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{ jd.title }}</h5>
+      <p class="card-text">
+        {{ jd.desc }}
+      </p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">
+        Posted on <b>{{ jd.creation_date }} </b> || Application will remain active from <b>{{ jd.start_date }} </b>  till  <b>{{ jd.end_date }} </b>
+      </li>
+      <li class="list-group-item">
+        CTC Details - <b>{{ jd.salary }}</b> || Location - <b>{{ jd.location }}</b> || Experience required - <b>{{ jd.experience }}</b>
+      </li>
+      <li class="list-group-item">Skills Required -  {{ jd.skills }}</li>
+    </ul>
+    
+    <div class="card-body">
+
+      {% if jd.id not in li %}
+
+      <a href=" {% url 'apply' jd.id %} " class="card-link btn btn-primary ">Apply Now</a>
+
+      {% else %}
+       
+      <a href=" {% url 'apply' jd.id %} " class="card-link btn btn-primary disabled"  >Applied</a>
+
+      {% endif %}
+     
+    </div>
+  </div>
+
+
+{% endblock %}
